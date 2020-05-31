@@ -1,10 +1,12 @@
+<?php
+
 class Solution
 {
 
-/**
- * @param Integer[] $nums
- * @return Integer[]
- */
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
     public function smallerNumbersThanCurrent($nums)
     {
         $unsorted_nums = $nums;

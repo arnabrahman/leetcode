@@ -1,3 +1,5 @@
+<?php
+
 /**
  * Definition for a singly-linked list.
  * class ListNode {
@@ -9,17 +11,19 @@
  *     }
  * }
  */
-class Solution {
+class Solution
+{
 
     /**
      * @param ListNode $head
      * @return Integer
      */
-    function getDecimalValue($head) {
-        $decimal=$head->val;
-        while($head->next){
-           $decimal = ($decimal << 1 | $head->next->val);
-           $head=$head->next;
+    function getDecimalValue($head)
+    {
+        $decimal = $head->val;
+        while ($head->next) {
+            $decimal = ($decimal << 1 | $head->next->val);
+            $head = $head->next;
         }
         return $decimal;
     }
