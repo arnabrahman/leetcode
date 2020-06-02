@@ -9,14 +9,14 @@ class Solution
      */
     function replaceElements($arr)
     {
-        $res = [];
         $len = count($arr);
         $max = $arr[$len - 1];
-        array_unshift($res, -1);
+        $arr[$len - 1] = -1;
         for ($i = $len - 2; $i >= 0; $i--) {
-            array_unshift($res, $max);
-            if ($arr[$i] > $max) $max = $arr[$i];
+            $temp = $arr[$i];
+            $arr[$i] = $max;
+            if ($temp > $max) $max = $temp;
         }
-        return $res;
+        return $arr;
     }
 }
