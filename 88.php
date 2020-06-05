@@ -24,9 +24,15 @@ class Solution
             }
         }
         if ($i == $m) {
-            $res = array_merge($res, array_slice($nums2, $j, $n - $j));
+            while($j<$n){
+                array_push($res, $nums2[$j]);
+                $j++;
+            }
         } else {
-            $res = array_merge($res, array_slice($nums1, $i, $m - $i));
+            while($i<$m){
+                array_push($res, $nums1[$i]);
+                $i++;
+            }
         }
         $nums1 = $res;
         return $nums1;
