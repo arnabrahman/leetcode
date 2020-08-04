@@ -2,20 +2,16 @@
 
 class Solution
 {
-
     /**
      * @param Integer $n
      * @return Boolean
+     * https://www.mathsisfun.com/algebra/logarithms.html
      */
     function isPowerOfTwo($n)
     {
-        if ($n <= 2) {
-            if ($n == 2 || $n == 1) return true;
-            return false;
-        }
-        while ($n > 2) {
-            $n = $n / 2;
-            if ($n == 2) return true;
+        if ($n > 0) {
+            $res = log($n, 2);
+            return pow(2, (int)$res) == $n;
         }
         return false;
     }
