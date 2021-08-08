@@ -1,16 +1,15 @@
 class CustomStack {
     private maxSize: number
-    private stack: Array<number>
+    private stack: Array<number> = []
 
     constructor(maxSize: number) {
         this.maxSize = maxSize
-        this.stack = []
     }
 
 
     push(x: number): void {
-        if (this.stack.length + 1 > this.maxSize) return
-        this.stack[this.stack.length] = x
+        if (this.stack.length == this.maxSize) return
+        this.stack.push(x)
     }
 
     pop(): number {
@@ -21,7 +20,8 @@ class CustomStack {
     }
 
     increment(k: number, val: number): void {
-        for (let index = 0; index < (k > this.stack.length ? this.stack.length : k); index++) {
+        const upto = k > this.stack.length ? this.stack.length : k
+        for (let index = 0; index < upto; index++) {
             this.stack[index] += val
         }
     }
