@@ -14,9 +14,7 @@ class CustomStack {
 
     pop(): number {
         if (this.stack.length == 0) return -1
-        const val = this.stack[this.stack.length - 1]
-        this.stack.pop()
-        return val
+        return this.stack.pop()
     }
 
     increment(k: number, val: number): void {
