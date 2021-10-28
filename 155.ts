@@ -1,20 +1,15 @@
 class MinStack {
     private stack: number[];
-    private min: number;
     constructor() {
         this.stack = []
-        this.min = null
     }
 
     push(val: number): void {
         this.stack.push(val)
-        this.findAndSaveMin()
     }
 
     pop(): void {
-        const element = this.stack.pop()
-        if (element == this.min) this.min = null
-        this.findAndSaveMin()
+        this.stack.pop()
     }
 
     top(): number {
@@ -22,14 +17,16 @@ class MinStack {
     }
 
     getMin(): number {
-        return this.min
+        return this.findMin()
     }
 
-    findAndSaveMin() {
+    findMin() {
+        let min = null
         for (let i of this.stack) {
-            if (this.min == null) this.min = i
-            else if (i < this.min) this.min = i
+            if (min == null) min = i
+            else if (i < min) min = i
         }
+        return min
     }
 }
 
