@@ -11,24 +11,18 @@
  */
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-    let newList = null
-    if (list1.val <= list2.val) {
-        newList = list1
-        list1 = list1.next
-    } else {
-        newList = list2
-        list2 = list2.next
-    }
-    const head = newList
+    const newList = list1.val <= list2.val ? list1 : list2
     while (list1 && list2) {
         if (list1.val <= list2.val) {
-            newList.next = list1
-            list1 = list1.next
+            const temp = new ListNode(list2.val, null)
+            list1.next = temp
+            list1 = temp.next
         } else {
-            newList.next = list2
-            list2 = list2.next
+            const temp = new ListNode(list2.val, null)
+
+
         }
-        newList = newList.next
+
     }
 
 };
