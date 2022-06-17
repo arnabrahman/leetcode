@@ -1,19 +1,22 @@
 function preorderTraversal(root: TreeNode | null): number[] {
+    if (root == null) return []
     const stack: TreeNode[] = [root]
-    const res: number[] = []
-    // while (root) {
-    //     stack.push(root)
-    //     res.push(root.val)
-    //     root = root.left
-    // }
+    const result: number[] = [root.val]
+    let curr = root
     while (stack.length > 0) {
-        const lastNode = stack.pop()
-        if (lastNode.right) {
-            stack.push(root.right)
-            res.push(root.right.val)
+        while (curr?.left) {
+            curr = curr.left
+            result.push(curr.val)
+            stack.push(curr)
+        }
+        curr = stack.pop()
+        curr = curr.right
+        if (curr) {
+            result.push(curr.val)
+            stack.push(curr)
         }
     }
-    return res
+    return result
 };
 
 /**
