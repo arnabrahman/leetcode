@@ -1,11 +1,6 @@
 function maxDepth(root: TreeNode | null): number {
     if (root == null) return 0
-    return 1 + Math.max(getSum(root.left, 0), getSum(root.right, 0))
+    const left = maxDepth(root.left)
+    const right = maxDepth(root.right)
+    return 1 + Math.max(left, right)
 };
-
-function getSum(root: TreeNode | null, sum: number) {
-    if (root == null) return sum
-    else {
-        return 1 + Math.max(getSum(root.left, 0), getSum(root.right, 0))
-    }
-}
