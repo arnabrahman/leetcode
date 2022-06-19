@@ -40,3 +40,13 @@ function connect(root: Node | null): Node | null {
     }
     return root
 };
+
+function connect(root: Node | null): Node | null {
+    if (root == null) return root
+    const left = connect(root.left)
+    const right = connect(root.right)
+    if (left) left.next = right
+    const a = root.left?.right
+    if (a) a.next = root.right?.left
+    return root
+};;
