@@ -42,11 +42,17 @@ function connect(root: Node | null): Node | null {
 };
 
 function connect(root: Node | null): Node | null {
-    if (root == null) return root
-    const left = connect(root.left)
-    const right = connect(root.right)
-    if (left) left.next = right
-    const a = root.left?.right
-    if (a) a.next = root.right?.left
+    if (root == null) return null
+    let curr = root
+    let next = root.left
+    while (next != null) {
+        curr.left.next = curr.right
+        while (curr.next) {
+            curr.right.next = curr.next.left
+            curr = curr.next
+            curr.left.next = curr.right
+        }
+        [curr, next] = [next, next.left]
+    }
     return root
-};;
+};
