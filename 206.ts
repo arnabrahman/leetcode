@@ -10,34 +10,39 @@ class ListNode {
 
 
 
-function reverseList(head: ListNode | null): ListNode | null {
-    if (head == null) {
-        return null
-    } else if (head.next == null) {
-        return head
-    } else {
-        const tail = head
-        const rest = head.next
-        tail.next = null
-        const rev = reverseList(rest)
-        printList(tail)
+// function reverseList(head: ListNode | null): ListNode | null {
+//     if (head == null) {
+//         return null
+//     } else if (head.next == null) {
+//         return head
+//     } else {
+//         const tail = head
+//         const rest = head.next
+//         tail.next = null
+//         const rev = reverseList(rest)
+//         printList(tail)
 
-        rev.next = tail
-        return rev
-        // rev.next = tail
-        // printList(rev)
-        // printList(tail)
-        // return rev
-    }
+//         rev.next = tail
+//         return rev
+//         // rev.next = tail
+//         // printList(rev)
+//         // printList(tail)
+//         // return rev
+//     }
+// };
+
+
+
+function reverseList(head: ListNode | null): ListNode | null {
+    return reverseTwoNodes(head, null)
 };
 
-
-// function reverseTwoNodes(firstNode: ListNode, secondNode: ListNode | null) {
-//     if (secondNode == null) return firstNode
-//     secondNode.next = firstNode
-//     firstNode.next = null
-//     return secondNode
-// }
+function reverseTwoNodes(firstNode: ListNode, secondNode: ListNode | null) {
+    if (firstNode == null) return secondNode
+    const next = firstNode.next
+    firstNode.next = secondNode
+    return reverseTwoNodes(next, firstNode)
+}
 
 
 //Iteratively
