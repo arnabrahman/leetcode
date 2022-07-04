@@ -24,11 +24,25 @@
  *   LCS of Binary search tree
  *
  */
+// function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
+//     while (root) {
+//         if (root.val < p.val && root.val < q.val) root = root.right
+//         else if (root.val > p.val && root.val > q.val) root = root.left
+//         else return root
+//     }
+//     return root
+// };
+
+/**
+ * Recusrsive solution
+ * @param root
+ * @param p 
+ * @param q 
+ * @returns 
+ */
 function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
-    while (root) {
-        if (root.val < p.val && root.val < q.val) root = root.right
-        else if (root.val > p.val && root.val > q.val) root = root.left
-        else return root
-    }
+    if (root == null) return root
+    if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left, p, q)
+    else if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right, p, q)
     return root
 };
