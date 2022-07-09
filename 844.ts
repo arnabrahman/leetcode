@@ -1,23 +1,26 @@
 function backspaceCompare(s: string, t: string): boolean {
     let a = ''
     let b = ''
-    let backSpaceCount = 0
-    for (let i = s.length - 1; i >= 0; i--) {
-        if (s[i] == '#') backSpaceCount++
-        else {
-            if (backSpaceCount == 0) a = s[i] + a
-            else backSpaceCount--
+    let backSpaceCount_s = 0
+    let backSpaceCount_t = 0
+    const len = s.length > t.length ? s.length - 1 : t.length - 1
+    for (let i = len; i >= 0; i--) {
+        if (i < s.length) {
+            if (s[i] == '#') backSpaceCount_s++
+            else {
+                if (backSpaceCount_s == 0) a = s[i] + a
+                else backSpaceCount_s--
+            }
+        }
+        if (i < t.length) {
+            if (t[i] == '#') backSpaceCount_t++
+            else {
+                if (backSpaceCount_t == 0) b = t[i] + b
+                else backSpaceCount_t--
+            }
         }
     }
-    backSpaceCount = 0
-    for (let i = t.length - 1; i >= 0; i--) {
-        if (t[i] == '#') backSpaceCount++
-        else {
-            if (backSpaceCount == 0) b = t[i] + b
-            else backSpaceCount--
-        }
-    }
-    return a==b
+    return a == b
 };
 
 console.log(backspaceCompare('ab##c#', 'c#d#'));
