@@ -1,30 +1,23 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
-    let row = -1;
-    let m = matrix.length
-    let n = matrix[0].length
-    for (let i = 0; i < m; i++) {
-        if (target == matrix[i][n - 1]) return true
-        else if (target > matrix[i][n - 1]) continue
-        row = i;
-        break;
+    const m = matrix.length
+    const n = matrix[0].length
+
+    return binarySearch(0, (m * n) - 1)
+    function binarySearch(l: number, r: number) {
+        let mid = Math.floor((l + r) / 2)
+
+        while (l <= r) {
+            const row = Math.floor((mid / n))
+            const col = mid - (n * row)
+            const val = matrix[row][col]
+
+            if (val == target) return true
+            else if (val > target) return binarySearch(l, mid - 1)
+            else return binarySearch(mid + 1, r)
+        }
+        return false
     }
-    if (row == -1) return false
-    return binarySearch(0, n - 1, matrix[row], target)
 };
 
-function binarySearch(low: number, high: number, nums: number[], target: number) {
-    while (low <= high) {
-        let mid = Math.floor((low + high) / 2)
-        if (nums[mid] == target) return true
-        else if (target < nums[mid]) {
-            return binarySearch(0, mid - 1, nums, target)
-        } else {
-            return binarySearch(mid + 1, high, nums, target)
-        }
-    }
-    return false
-}
-
-// console.log(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 35));
-
-console.log(searchMatrix([[1, 3, 5]], 4));
+console.log(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 21));
+console.log(searchMatrix([[1, 3, 5]], 1));
